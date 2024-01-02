@@ -4,6 +4,7 @@ import flows.startTickGenerator
 import flows.tickFlow
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.runBlocking
 
@@ -12,7 +13,7 @@ fun main() {
     println("Enter emission delay in milliseconds:")
     emission_delay_from_user_input = readln().toLong()
     runBlocking {
-        flatmapMergeFlow()
+        zipFlows()
     }
 }
 
@@ -65,6 +66,7 @@ suspend fun sampleFlow() {
 }
 
 
+/***       Merge two flows       ***/
 
 @OptIn(ExperimentalCoroutinesApi::class)
 suspend fun flatmapMergeFlow() {
@@ -73,5 +75,63 @@ suspend fun flatmapMergeFlow() {
         flowOf("$it a", "$it b")
     }.collect {
         println("Flattened item $it collected")
+    }
+}
+
+
+/***       Concatenate two flows       ***/
+
+@OptIn(ExperimentalCoroutinesApi::class)
+suspend fun flatmapConcatFlow() {
+    println("Flatmap Concat started collection...")
+    numberGeneratorFlow.flatMapConcat {
+        flowOf("$it a", "$it b")
+    }.collect {
+        println("Flattened concatenated item $it collected")
+    }
+}
+
+
+/***       Buffering a flow when bottleneck on collector       ***/
+
+@OptIn(ExperimentalCoroutinesApi::class)
+suspend fun bufferExample() {
+    println("Buffering sample started collection...")
+    numberGeneratorFlow
+        .onEach {
+            println("Buffered item $it onEach method")
+        }
+        .buffer(30)
+        .collect {
+            delay(3 * emission_delay_from_user_input)
+            println("Buffered item $it collected")
+        }
+}
+
+
+/***       Combine two flows       ***/
+
+suspend fun combineFlows() {
+    startTickGenerator()
+    println("Combine started collection...")
+    numberGeneratorFlow.combine(tickFlow) { i, j ->
+        "[[[$i + $j]]]"
+    }.collect {
+        println("Combined item $it collected")
+        println("")
+    }
+}
+
+
+/***       Zip two flows       ***/
+
+suspend fun zipFlows() {
+    startTickGenerator()
+    println("Zip started collection...")
+    numberGeneratorFlow.zip(tickFlow) { i, j ->
+        "[[[$i + $j]]]"
+    }.collect {
+        println("Zipped item $it collected")
+        println("")
     }
 }

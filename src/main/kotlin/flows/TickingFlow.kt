@@ -15,8 +15,9 @@ val tickFlow: SharedFlow<String> = _tickFlow
 fun startTickGenerator() {
     coroutineScope.launch {
         while (true) {
-            println("New Tick emmited")
-            _tickFlow.emit("Tick: ${Date(System.currentTimeMillis())}")
+            val tick = Date(System.currentTimeMillis())
+            println("New Tick emmited ($tick)")
+            _tickFlow.emit("Tick: ${tick}")
             delay(emission_delay_from_user_input)
         }
     }
