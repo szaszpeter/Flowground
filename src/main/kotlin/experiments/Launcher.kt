@@ -1,3 +1,5 @@
+package experiments
+
 import flows.emission_delay_from_user_input
 import flows.startTickGenerator
 import kotlinx.coroutines.CoroutineScope
@@ -7,7 +9,7 @@ import kotlin.coroutines.CoroutineContext
 // Resources
 // https://medium.com/@mortitech/sharein-vs-statein-in-kotlin-flows-when-to-use-each-1a19bd187553
 // https://medium.com/androiddevelopers/things-to-know-about-flows-sharein-and-statein-operators-20e6ccb2bc74
-// TODO CONTINUE THIS -> -> -> https://blog.canopas.com/android-9-useful-kotlin-flow-operators-you-need-to-know-b9daef4b630f
+// https://blog.canopas.com/android-9-useful-kotlin-flow-operators-you-need-to-know-b9daef4b630f
 // TODO READ THIS -> -> -> https://proandroiddev.com/evolving-with-kotlin-advanced-functional-programming-techniques-ed4b8e0baea3
 
 

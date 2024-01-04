@@ -2,13 +2,16 @@ package intermediaryoperators
 
 import flows.numberGeneratorFlow
 import kotlinx.coroutines.flow.sample
+import kotlinx.coroutines.runBlocking
 
 
 /***       Sample a simple flow       ***/
 
-suspend fun sampleFlow() {
-    println("Sampling starting collection...")
-    numberGeneratorFlow.sample(300).collect {
-        println("Item $it collected")
+fun sampleFlow() {
+    runBlocking {
+        println("Sampling starting collection...")
+        numberGeneratorFlow.sample(300).collect {
+            println("Item $it collected")
+        }
     }
 }

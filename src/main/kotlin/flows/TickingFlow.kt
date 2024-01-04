@@ -1,6 +1,6 @@
 package flows
 
-import coroutineScope
+import experiments.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
