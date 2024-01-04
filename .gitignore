@@ -26,6 +26,6 @@ replay_pid*
 *.lock
 *.tab
 
-!/build/
-!/.idea/
-!/.gradle/
+/build/
+/.idea/
+/.gradle/
