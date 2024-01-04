@@ -1,6 +1,6 @@
 package flows
 
-import experiments.coroutineScope
+import experiments.execute.coroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.shareIn
 
